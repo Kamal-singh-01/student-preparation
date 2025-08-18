@@ -1,0 +1,6 @@
+@import "tailwindcss";
+ @layer base {
+  body {
+    @apply font-mono; /* or font-serif, font-mono */
+  }
+ }
