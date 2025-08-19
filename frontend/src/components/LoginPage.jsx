@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Navbar from './Navbar'
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../lib/axios';
 import toast from 'react-hot-toast';
+import { doSignInWithEmailAndPassword } from '../firebase/auth';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");

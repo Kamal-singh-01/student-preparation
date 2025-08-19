@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../lib/axios";
 import toast from "react-hot-toast";
+import { doCreateUserWithEmailAndPassword, doSendEmailVerification } from "../firebase/auth";
+import { auth } from "../firebase/firebase";
+import { updateProfile } from "firebase/auth";
 
 const SignUpPage = () => {
 const [name, setName] = useState("");
@@ -15,16 +17,17 @@ const navigate = useNavigate()
     
     if(!name || ! email || !password){
       toast.error("All fields are required")
+      return;
     }
  
     try {
-    const res = await api.post("/signup", {
-        name,
-        email,
-        password
-      })
-      localStorage.setItem("userId", res.data._id);
-      toast.success("Successfully Signed In")
+      const userCredential = await doCreateUserWithEmailAndPassword(email, password);
+      if (auth.currentUser && name) {
+        await updateProfile(auth.currentUser, { displayName: name });
+      }
+      await doSendEmailVerification();
+      localStorage.setItem("userId", userCredential.user.uid);
+      toast.success("Successfully signed up. Please check your email to verify your account.")
       navigate("/login")
     } catch (error) {
       console.log("error in signup",error)
