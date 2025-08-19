@@ -18,14 +18,17 @@ const ChatBot = () => {
     const createConversation = async () => {
       try {
         const userId = localStorage.getItem("userId");
+        console.log("userId from localStorage:", userId);
         if (!userId) {
           toast.error("User not logged in");
           return;
         }
+        
         const res = await api.post("/conversation", { id: userId });
         setConversationId(res.data._id);
         setMessages(res.data.messages || []);
       } catch (error) {
+        console.error("Create conversation error:", error);
         toast.error("Failed to start conversation");
       }
     };
@@ -35,15 +38,21 @@ const ChatBot = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
+    
     try {
       setLoading(true);
+      const userId = localStorage.getItem("userId");
+      
       const res = await api.post(`/${conversationId}/message`, {
         sender: "user",
         text: input,
+        userId: userId 
       });
+      
       setMessages(res.data.messages || res.data.data?.messages || []);
       setInput("");
     } catch (error) {
+      console.error("Send message error:", error);
       toast.error("Failed to send message");
     } finally {
       setLoading(false);
@@ -281,4 +290,3 @@ const ChatBot = () => {
 };
 
 export default ChatBot;
- 

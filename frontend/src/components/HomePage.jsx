@@ -41,11 +41,9 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navbar */}
       <Navbar />
 
       <div className="flex flex-1">
-        {/* Sidebar */}
         <aside className="w-80 bg-white border-r border-gray-200 shadow-sm hidden md:flex flex-col">
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center space-x-3 mb-4">
@@ -120,7 +118,6 @@ const HomePage = () => {
           </div>
         </aside>
 
-        {/* Main Content */}
         <main className="flex-1 p-8 space-y-8">
           {/* Hero Section */}
           <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl border border-gray-200 shadow-sm p-8">
@@ -146,7 +143,7 @@ const HomePage = () => {
                     <span>🚀</span>
                     <span>Start New Chat</span>
                   </Link>
-                  <Link to={"/test"} className="bg-white hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-xl font-medium border border-gray-300 hover:border-gray-400 transition-all duration-200 flex items-center space-x-2">
+                  <Link to={"/exam"} className="bg-white hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-xl font-medium border border-gray-300 hover:border-gray-400 transition-all duration-200 flex items-center space-x-2">
                     <span>📝</span>
                     <span>Take a Test</span>
                   </Link>
@@ -161,9 +158,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Feature Cards Grid */}
           <div className="grid lg:grid-cols-3 gap-6">
-            {/* AI Tutoring Card */}
             <Link
               to="/chatbot"
               className="group text-left block p-6 bg-white rounded-2xl border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300"
@@ -184,7 +179,6 @@ const HomePage = () => {
               </p>
             </Link>
 
-            {/* Take Test Card */}
             <Link
               to="/exam"
               className="group text-left block p-6 bg-white rounded-2xl border border-gray-200 hover:border-green-300 hover:shadow-lg transition-all duration-300" 
@@ -205,7 +199,6 @@ const HomePage = () => {
               </p>
             </Link>
 
-            {/* Progress Tracking Card */}
             <div className="p-6 bg-white rounded-2xl border border-gray-200">
               <div className="flex items-start justify-between mb-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
@@ -224,7 +217,6 @@ const HomePage = () => {
             </div>
           </div>
  
-          {/* Study Tips Section */}
           <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-6">
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center flex-shrink-0">

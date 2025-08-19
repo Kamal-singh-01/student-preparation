@@ -8,24 +8,24 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-  const handleSubmit = async(e) => {
-      e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-      try {
-       const response = await api.post("/login", {
-          email, 
-          password
-        });
-        const userId = response.data.user.id;
+  try {
+    const response = await api.post("/login", { email, password });
 
-        localStorage.setItem("userId", userId);
-        toast.success("Successfully logged in!")
-        navigate("/homepage")
-      } catch (error) {
-        console.log("Failed to log in",error)
-        toast.error("Failed to login")
-      }
-  } 
+    const userId = response.data._id;
+localStorage.setItem("userId", userId);
+
+
+    toast.success("Successfully logged in!");
+    navigate("/homepage");
+  } catch (error) {
+    console.log("Failed to log in", error.response?.data || error.message);
+    toast.error(error.response?.data?.message || "Failed to login");
+  }
+};
+
   return (
     <div>
       <Navbar/>

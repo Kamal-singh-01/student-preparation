@@ -61,7 +61,6 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
@@ -93,7 +92,6 @@ const LandingPage = () => {
               </button>
             </div>
 
-            {/* Mobile menu button */}
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -107,7 +105,6 @@ const LandingPage = () => {
             </div>
           </div>
           
-          {/* Mobile menu */}
           {isMenuOpen && (
             <div className="md:hidden border-t border-gray-200 py-4 space-y-2">
               <a href="#features" className="block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors">Features</a>
@@ -130,7 +127,6 @@ const LandingPage = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className="pt-16 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
@@ -164,7 +160,6 @@ const LandingPage = () => {
               </div>
             </div>
              
-            {/* Hero Image/Illustration */}
             <div className="mt-16 relative">
               <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-gray-200 shadow-sm">
                 <div className="grid md:grid-cols-3 gap-6">
@@ -196,7 +191,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -226,7 +220,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* About Section */}
       <section id="about" className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -304,7 +297,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
       <section id="testimonials" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -342,7 +334,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -363,7 +354,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-gray-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
