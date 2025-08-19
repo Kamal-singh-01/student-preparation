@@ -1,0 +1,42 @@
+import express from 'express';
+import dotenv from 'dotenv';
+import { connectDB } from './config/db.js';
+import router from './routes/learnRoute.js';
+import cors from 'cors';
+import path from 'path';
+
+dotenv.config();
+
+const app = express();
+const __dirname = path.resolve(); // works for ES modules
+
+if (process.env.NODE_ENV !== "production") {
+  app.use(cors({
+    origin: "http://localhost:5173",
+  }));
+}
+
+app.use(express.json());
+app.use("/", router);
+
+if (process.env.NODE_ENV === "production") {
+  // Serve static files from the React app
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  // Catch-all route to serve index.html
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 3000;
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`App is listening on port: ${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error("Failed to connect to DB:", err);
+  });
