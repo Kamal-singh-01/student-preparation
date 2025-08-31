@@ -5,6 +5,10 @@ import { model } from "../config/gemini.js";
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+    res.status(200).send("Backend is running!");
+});
+
 router.post("/signup", async (req, res) => {
     console.log("Signup route reached.");
     try {
