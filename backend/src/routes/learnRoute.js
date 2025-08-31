@@ -6,20 +6,26 @@ import { model } from "../config/gemini.js";
 const router = express.Router();
 
 router.post("/signup", async (req, res) => {
+    console.log("Signup route reached.");
     try {
         const { name, email, password } = req.body || {};
+        console.log("Received signup data:", { name, email, password });
         if (!name || !email || !password) {
+            console.log("Missing signup data.");
             return res.status(400).json({ error: "name, email, password required" });
         }
+        console.log("Creating new User instance.");
         const user = new User({ name, email, password });
+        console.log("Attempting to save user:", user);
         await user.save();
+        console.log(`User signed up successfully: Name - ${user.name}, Email - ${user.email}`);
         res.json({
             _id: user._id,
             name: user.name,
             email: user.email,
         });
     } catch (error) {
-        console.log("error in signing up user", error);
+        console.error("Error in signing up user:", error);
         res.status(400).json({ error: error.message });
     }
 });
@@ -31,7 +37,8 @@ router.post("/login", async (req, res) => {
         if (!user) {
             return res.status(400).json({ error: "User not found" });
         }
-        if (password !== user.password) {
+        const isMatch = await user.matchPassword(password);
+        if (!isMatch) {
             return res.status(400).json({ error: "Invalid password" });
         }
         res.json({

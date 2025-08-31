@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { doCreateUserWithEmailAndPassword, doSendEmailVerification } from "../firebase/auth";
 import { auth } from "../firebase/firebase";
 import { updateProfile } from "firebase/auth";
+import api from "../lib/axios";
 
 const SignUpPage = () => {
 const [name, setName] = useState("");
@@ -25,6 +26,9 @@ const navigate = useNavigate()
       if (auth.currentUser && name) {
         await updateProfile(auth.currentUser, { displayName: name });
       }
+      // Send user data to your backend after successful Firebase signup
+      await api.post("/signup", { name, email, password });
+
       await doSendEmailVerification();
       localStorage.setItem("userId", userCredential.user.uid);
       toast.success("Successfully signed up. Please check your email to verify your account.")
