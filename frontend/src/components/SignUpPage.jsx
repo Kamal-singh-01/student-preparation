@@ -37,7 +37,11 @@ const [loading, setLoading] = useState(false); // New loading state
       navigate("/login")
     } catch (error) {
       console.log("error in signup",error)
-      toast.error("error in signing up")
+      if (error.code === 'auth/email-already-in-use') {
+        toast.error("Email already in use. Please log in or use a different email.");
+      } else {
+        toast.error("Error in signing up: " + error.message);
+      }
     } finally {
         setLoading(false); // Set loading to false in finally block
     }
