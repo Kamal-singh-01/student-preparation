@@ -14,20 +14,14 @@ if (process.env.NODE_ENV !== "production") {
     app.use(cors({
         origin: "http://localhost:5173",
     }));
+} else {
+    app.use(cors({
+        origin: process.env.FRONTEND_URL, // Replace with your Netlify frontend URL
+    }));
 }
 
 app.use(express.json());
 app.use("/", router);
-
-if (process.env.NODE_ENV === "production") {
-    // Serve static files from the React app
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-    // Catch-all route to serve index.html
-    app.get(/.*/, (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
-    });
-}
 
 const PORT = process.env.PORT || 3000;
 
