@@ -1,6 +1,11 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
  @layer base {
   body {
-    @apply font-mono; /* or font-serif, font-mono */
+    @apply font-inter; 
   }
  }

@@ -13,7 +13,7 @@ const Navbar = () => {
   }; 
 
   return (
-    <nav className="bg-blue-500 shadow-xl rounded-2xl md:rounded-xl md:mx-4 p-4 sticky top-0 z-50 transition-all duration-300 mt-2">
+    <nav className=" bg-blue-500 shadow-xl rounded-2xl md:rounded-xl md:mx-4 p-4 sticky top-0 z-50 transition-all duration-300 mt-2">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo and Home Link */}
         <Link to={isHomePage ? "/" : "/homepage"} className="flex items-center space-x-3">

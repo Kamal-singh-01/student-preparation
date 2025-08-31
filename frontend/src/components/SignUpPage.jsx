@@ -12,6 +12,7 @@ const [name, setName] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const navigate = useNavigate()
+const [loading, setLoading] = useState(false); // New loading state
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const navigate = useNavigate()
       toast.error("All fields are required")
       return;
     }
+    setLoading(true); // Set loading to true
  
     try {
       const userCredential = await doCreateUserWithEmailAndPassword(email, password);
@@ -36,6 +38,8 @@ const navigate = useNavigate()
     } catch (error) {
       console.log("error in signup",error)
       toast.error("error in signing up")
+    } finally {
+        setLoading(false); // Set loading to false in finally block
     }
   };
 
@@ -79,8 +83,9 @@ const navigate = useNavigate()
             <button
               type="submit"
               className="bg-gradient-to-r bg-blue-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:opacity-90 transition duration-200"
+              disabled={loading} // Disable button when loading
             >
-              Sign Up
+              {loading ? "Signing Up..." : "Sign Up"} {/* Display loader text */}
             </button>
           </form>
 
